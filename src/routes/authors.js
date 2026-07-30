@@ -1,18 +1,24 @@
 import express from "express";
-import authors from "../data/authors.js";
+import {
+  getAllAuthors,
+  getAuthorById,
+  createAuthor,
+  updateAuthor,
+  deleteAuthor,
+} from "../services/authors.js";
 
 const router = express.Router();
 
-// todos los autores
-router.get("/", (req, res) => {
+// Obtener todos los autores
+router.get("/", async (req, res) => {
+  const authors = await getAllAuthors();
+
   res.json(authors);
 });
 
-// un autor por ID
-router.get("/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  const author = authors.find((author) => author.id === id);
+// Obtener un autor por ID
+router.get("/:id", async (req, res) => {
+  const author = await getAuthorById(req.params.id);
 
   if (!author) {
     return res.status(404).json({
@@ -24,26 +30,15 @@ router.get("/:id", (req, res) => {
 });
 
 // Crear un autor
-router.post("/", (req, res) => {
-  const { name, email, bio } = req.body;
+router.post("/", async (req, res) => {
+  const author = await createAuthor(req.body);
 
-  const newAuthor = {
-    id: authors.length + 1,
-    name,
-    email,
-    bio,
-  };
-
-  authors.push(newAuthor);
-
-  res.status(201).json(newAuthor);
+  res.status(201).json(author);
 });
 
 // Actualizar un autor
-router.put("/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  const author = authors.find((author) => author.id === id);
+router.put("/:id", async (req, res) => {
+  const author = await updateAuthor(req.params.id, req.body);
 
   if (!author) {
     return res.status(404).json({
@@ -51,28 +46,18 @@ router.put("/:id", (req, res) => {
     });
   }
 
-  const { name, email, bio } = req.body;
-
-  author.name = name;
-  author.email = email;
-  author.bio = bio;
-
   res.json(author);
 });
 
 // Eliminar un autor
-router.delete("/:id", (req, res) => {
-  const id = Number(req.params.id);
+router.delete("/:id", async (req, res) => {
+  const author = await deleteAuthor(req.params.id);
 
-  const index = authors.findIndex((author) => author.id === id);
-
-  if (index === -1) {
+  if (!author) {
     return res.status(404).json({
       message: "Author not found",
     });
   }
-
-  authors.splice(index, 1);
 
   res.status(204).send();
 });
