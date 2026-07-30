@@ -6,6 +6,7 @@ import {
   updateAuthor,
   deleteAuthor,
 } from "../services/authors.js";
+import validateAuthor from "../middlewares/validateAuthor.js";
 
 const router = express.Router();
 
@@ -38,7 +39,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // Crear un autor
-router.post("/", async (req, res, next) => {
+router.post("/", validateAuthor, async (req, res, next) => {
   try {
     const author = await createAuthor(req.body);
 
@@ -49,7 +50,7 @@ router.post("/", async (req, res, next) => {
 });
 
 // Actualizar un autor
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", validateAuthor, async (req, res, next) => {
   try {
     const author = await updateAuthor(req.params.id, req.body);
 

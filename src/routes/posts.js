@@ -6,6 +6,7 @@ import {
   updatePost,
   deletePost,
 } from "../services/posts.js";
+import validatePost from "../middlewares/validatePost.js";
 
 const router = express.Router();
 
@@ -38,7 +39,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // Crear un post
-router.post("/", async (req, res, next) => {
+router.post("/", validatePost, async (req, res, next) => {
   try {
     const post = await createPost(req.body);
 
@@ -49,7 +50,7 @@ router.post("/", async (req, res, next) => {
 });
 
 // Actualizar un post
-router.put("/:id", async (req, res, next) => {
+router.put("/:id", validatePost, async (req, res, next) => {
   try {
     const post = await updatePost(req.params.id, req.body);
 
