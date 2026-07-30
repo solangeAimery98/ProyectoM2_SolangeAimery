@@ -1,18 +1,24 @@
 import express from "express";
-import posts from "../data/posts.js";
+import {
+  getAllPosts,
+  getPostById,
+  createPost,
+  updatePost,
+  deletePost,
+} from "../services/posts.js";
 
 const router = express.Router();
 
 // Obtener todos los posts
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+  const posts = await getAllPosts();
+
   res.json(posts);
 });
 
 // Obtener un post por ID
-router.get("/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  const post = posts.find((post) => post.id === id);
+router.get("/:id", async (req, res) => {
+  const post = await getPostById(req.params.id);
 
   if (!post) {
     return res.status(404).json({
@@ -24,26 +30,15 @@ router.get("/:id", (req, res) => {
 });
 
 // Crear un post
-router.post("/", (req, res) => {
-  const { title, content, author_id } = req.body;
+router.post("/", async (req, res) => {
+  const post = await createPost(req.body);
 
-  const newPost = {
-    id: posts.length + 1,
-    title,
-    content,
-    author_id,
-  };
-
-  posts.push(newPost);
-
-  res.status(201).json(newPost);
+  res.status(201).json(post);
 });
 
 // Actualizar un post
-router.put("/:id", (req, res) => {
-  const id = Number(req.params.id);
-
-  const post = posts.find((post) => post.id === id);
+router.put("/:id", async (req, res) => {
+  const post = await updatePost(req.params.id, req.body);
 
   if (!post) {
     return res.status(404).json({
@@ -51,28 +46,18 @@ router.put("/:id", (req, res) => {
     });
   }
 
-  const { title, content, author_id } = req.body;
-
-  post.title = title;
-  post.content = content;
-  post.author_id = author_id;
-
   res.json(post);
 });
 
 // Eliminar un post
-router.delete("/:id", (req, res) => {
-  const id = Number(req.params.id);
+router.delete("/:id", async (req, res) => {
+  const post = await deletePost(req.params.id);
 
-  const index = posts.findIndex((post) => post.id === id);
-
-  if (index === -1) {
+  if (!post) {
     return res.status(404).json({
       message: "Post not found",
     });
   }
-
-  posts.splice(index, 1);
 
   res.status(204).send();
 });
