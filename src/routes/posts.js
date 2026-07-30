@@ -10,56 +10,76 @@ import {
 const router = express.Router();
 
 // Obtener todos los posts
-router.get("/", async (req, res) => {
-  const posts = await getAllPosts();
+router.get("/", async (req, res, next) => {
+  try {
+    const posts = await getAllPosts();
 
-  res.json(posts);
+    res.json(posts);
+  } catch (error) {
+    next(error);
+  }
 });
 
 // Obtener un post por ID
-router.get("/:id", async (req, res) => {
-  const post = await getPostById(req.params.id);
+router.get("/:id", async (req, res, next) => {
+  try {
+    const post = await getPostById(req.params.id);
 
-  if (!post) {
-    return res.status(404).json({
-      message: "Post not found",
-    });
+    if (!post) {
+      return res.status(404).json({
+        message: "Post not found",
+      });
+    }
+
+    res.json(post);
+  } catch (error) {
+    next(error);
   }
-
-  res.json(post);
 });
 
 // Crear un post
-router.post("/", async (req, res) => {
-  const post = await createPost(req.body);
+router.post("/", async (req, res, next) => {
+  try {
+    const post = await createPost(req.body);
 
-  res.status(201).json(post);
+    res.status(201).json(post);
+  } catch (error) {
+    next(error);
+  }
 });
 
 // Actualizar un post
-router.put("/:id", async (req, res) => {
-  const post = await updatePost(req.params.id, req.body);
+router.put("/:id", async (req, res, next) => {
+  try {
+    const post = await updatePost(req.params.id, req.body);
 
-  if (!post) {
-    return res.status(404).json({
-      message: "Post not found",
-    });
+    if (!post) {
+      return res.status(404).json({
+        message: "Post not found",
+      });
+    }
+
+    res.json(post);
+  } catch (error) {
+    next(error);
   }
-
-  res.json(post);
 });
 
 // Eliminar un post
-router.delete("/:id", async (req, res) => {
-  const post = await deletePost(req.params.id);
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const post = await deletePost(req.params.id);
 
-  if (!post) {
-    return res.status(404).json({
-      message: "Post not found",
-    });
+    if (!post) {
+      return res.status(404).json({
+        message: "Post not found",
+      });
+    }
+
+    res.status(204).send();
+  } catch (error) {
+    next(error);
   }
-
-  res.status(204).send();
 });
 
 export default router;
