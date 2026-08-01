@@ -2,6 +2,7 @@ import express from "express";
 import {
   getAllPosts,
   getPostById,
+  getPostsByAuthor,
   createPost,
   updatePost,
   deletePost,
@@ -14,6 +15,17 @@ const router = express.Router();
 router.get("/", async (req, res, next) => {
   try {
     const posts = await getAllPosts();
+
+    res.json(posts);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Obtener todos los posts de un autor
+router.get("/author/:authorId", async (req, res, next) => {
+  try {
+    const posts = await getPostsByAuthor(req.params.authorId);
 
     res.json(posts);
   } catch (error) {
