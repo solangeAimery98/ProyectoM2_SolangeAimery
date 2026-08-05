@@ -71,10 +71,8 @@ describe("GET /posts/author/:authorId", () => {
 
   test("debe devolver un arreglo vacío si el autor no tiene posts", async () => {
     await pool.query(`
-
       INSERT INTO authors (name, email, bio)
       VALUES ('Pedro Gómez', 'pedro@example.com', 'Backend Developer');
-
     `);
 
     const response = await request(app).get("/posts/author/3");

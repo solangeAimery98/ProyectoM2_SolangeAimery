@@ -1,0 +1,447 @@
+openapi: 3.1.1
+
+info:
+  title: MiniBlog API
+  version: 1.0.0
+  description: API REST para gestionar autores y posts de un blog.
+  contact:
+    name: Solange Aimery
+    email: solangeaimery@icloud.com
+
+servers:
+  - url: http://localhost:3000
+    description: Desarrollo local
+
+tags:
+  - name: Authors
+    description: Endpoints para gestionar autores
+
+  - name: Posts
+    description: Endpoints para gestionar posts
+
+paths:
+  /authors:
+    get:
+      tags:
+        - Authors
+      summary: Obtener todos los autores
+      description: Devuelve la lista completa de autores registrados en la base de datos.
+
+      responses:
+        "200":
+          description: Lista de autores
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Author"
+
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    post:
+      tags:
+        - Authors
+      summary: Crear un nuevo autor
+      description: Crea un nuevo autor utilizando la información enviada en el body.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewAuthor"
+
+      responses:
+        "201":
+          description: Autor creado correctamente
+
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+
+        "400":
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        "409":
+          description: El email ya existe
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /authors/{id}:
+    get:
+      tags:
+        - Authors
+      summary: Obtener un autor por ID
+      description: Busca un autor utilizando su identificador.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Autor encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+        "404":
+          description: Autor no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - Authors
+      summary: Actualizar un autor
+      description: Actualiza la información de un autor existente.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewAuthor"
+
+      responses:
+        "200":
+          description: Autor actualizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+
+        "400":
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        "404":
+          description: Autor no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    delete:
+      tags:
+        - Authors
+      summary: Eliminar un autor
+      description: Elimina un autor utilizando su identificador.
+      parameters:
+        - name: id
+          in: path
+          required: true
+
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Autor eliminado correctamente
+        "404":
+          description: Autor no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /posts:
+    get:
+      tags:
+        - Posts
+      summary: Obtener todos los posts
+      description: Devuelve la lista completa de posts.
+
+      responses:
+        "200":
+          description: Lista de posts
+          content:
+            application/json:
+              schema:
+                type: array
+
+                items:
+                  $ref: "#/components/schemas/Post"
+
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    post:
+      tags:
+        - Posts
+      summary: Crear un nuevo post
+      description: Crea un nuevo post para un autor existente.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewPost"
+
+      responses:
+        "201":
+          description: Post creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Post"
+
+        "400":
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        "404":
+          description: Autor no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /posts/{id}:
+    get:
+      tags:
+        - Posts
+      summary: Obtener un post por ID
+      description: Busca un post utilizando su identificador.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        "200":
+          description: Post encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Post"
+
+        "404":
+          description: Post no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    put:
+      tags:
+        - Posts
+      summary: Actualizar un post
+      description: Actualiza un post existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewPost"
+
+      responses:
+        "200":
+          description: Post actualizado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Post"
+
+        "400":
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+        "404":
+          description: Post no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+    delete:
+      tags:
+        - Posts
+      summary: Eliminar un post
+      description: Elimina un post utilizando su identificador.
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        "204":
+          description: Post eliminado correctamente
+
+        "404":
+          description: Post no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /posts/author/{authorId}:
+    get:
+      tags:
+        - Posts
+      summary: Obtener posts de un autor
+      description: Devuelve todos los posts pertenecientes a un autor.
+      parameters:
+        - name: authorId
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        "200":
+          description: Lista de posts del autor
+          content:
+            application/json:
+              schema:
+                type: array
+
+                items:
+                  $ref: "#/components/schemas/Post"
+
+        "404":
+          description: Autor no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Author:
+      type: object
+
+      properties:
+        id:
+          type: integer
+          description: ID único del autor
+
+        name:
+          type: string
+          description: Nombre completo del autor
+
+        email:
+          type: string
+          format: email
+          description: Email del autor
+
+        bio:
+          type: string
+          description: Biografía del autor
+
+    NewAuthor:
+      type: object
+
+      required:
+        - name
+        - email
+        - bio
+
+      properties:
+        name:
+          type: string
+          description: Nombre completo del autor
+
+        email:
+          type: string
+          format: email
+          description: Email único del autor
+
+        bio:
+          type: string
+          description: Biografía del autor
+
+    Post:
+      type: object
+
+      properties:
+        id:
+          type: integer
+          description: ID único del post
+
+        title:
+          type: string
+          description: Título del post
+
+        content:
+          type: string
+          description: Contenido del post
+
+        author_id:
+          type: integer
+          description: ID del autor propietario del post
+
+    NewPost:
+      type: object
+
+      required:
+        - title
+        - content
+        - author_id
+
+      properties:
+        title:
+          type: string
+          description: Título del post
+
+        content:
+          type: string
+          description: Contenido del post
+
+        author_id:
+          type: integer
+          description: ID del autor
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Mensaje descriptivo del error
