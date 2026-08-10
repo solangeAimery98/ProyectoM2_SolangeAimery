@@ -1,52 +1,68 @@
 # 🌸 MiniBlog API
 
-API REST desarrollada con **Node.js**, **Express** y **PostgreSQL** como proyecto integrador del Módulo 2 de **Soy Henry**.
+REST API developed with **Node.js**, **Express**, and **PostgreSQL** as the Module 2 Integrative Project at **Soy Henry**.
 
 ---
 
-# 💜 Sobre el proyecto
+---
 
-MiniBlog API fue desarrollada con el objetivo de construir un backend completo siguiendo buenas prácticas de desarrollo.
+# 🌐 Live Demo
 
-La aplicación permite gestionar **autores** y **posts** mediante una API REST, implementando operaciones CRUD, persistencia de datos, validaciones, documentación y pruebas automatizadas.
+## API
 
-Durante el desarrollo se trabajó aplicando conceptos de:
+**https://proyectom2solangeaimery-production.up.railway.app/api-docs/#/Posts/put_posts__id_**
 
-- Arquitectura REST.
+<!-- ## Swagger Documentation
+
+**https://YOUR-API-URL/docs** -->
+
+---
+
+# 📸 Preview
+
+### Swagger Documentation
+
+![Swagger](src/docs/img/swagger.png)
+
+### Authors Endpoints
+
+![Authors](src/docs/img/authors.png)
+
+### Posts Endpoints
+
+![Posts](src/docs/img/posts.png)
+
+---
+
+# 💜 About the Project
+
+MiniBlog API was developed with the goal of building a complete backend application following good development practices.
+
+The application allows managing **authors** and **posts** through a REST API, implementing CRUD operations, data persistence, validations, documentation, and automated testing.
+
+During development, the following concepts were applied:
+
+- REST Architecture.
 - Express.
 - PostgreSQL.
-- Validaciones.
+- Data Validation.
 - Testing.
-- Documentación con OpenAPI.
-- Deployment en Railway.
+- OpenAPI Documentation.
+- Railway Deployment.
 
 ---
 
-# ✨ Funcionalidades
+# ✨ Features
 
-- 📚 CRUD completo de autores.
-- 📝 CRUD completo de posts.
-- 🛡️ Validación de datos de entrada.
-- 🗄️ Persistencia con PostgreSQL.
-- 📖 Documentación interactiva con Swagger.
-- 🧪 Tests automatizados con Vitest.
-- 🚂 Deploy en Railway.
+- 📚 Complete CRUD for Authors.
+- 📝 Complete CRUD for Posts.
+- 🛡️ Input data validation.
+- 🗄️ PostgreSQL data persistence.
+- 📖 Interactive Swagger documentation.
+- 🧪 Automated tests with Vitest.
+- 🚂 Railway deployment.
 
----
-
-# 🌐 Demo
-
-### API
-
-_Pendiente_
-
-### Documentación Swagger
-
-_Pendiente_
-
----
-
-# 🚀 Tecnologías utilizadas
+# 🚀 Technologies
 
 - Node.js
 - Express
@@ -59,9 +75,9 @@ _Pendiente_
 
 ---
 
-# 📋 Requisitos
+# 📋 Requirements
 
-Antes de ejecutar el proyecto necesitás tener instalado:
+Before running the project, make sure you have installed:
 
 - Node.js
 - PostgreSQL
@@ -69,21 +85,21 @@ Antes de ejecutar el proyecto necesitás tener instalado:
 
 ---
 
-# 📦 Instalación
+# 📦 Installation
 
-Clonar el repositorio
+Clone the repository
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone YOUR_REPOSITORY_URL
 ```
 
-Ingresar a la carpeta
+Navigate to the project folder
 
 ```bash
 cd ProyectoM2_SolangeAimery
 ```
 
-Instalar dependencias
+Install dependencies
 
 ```bash
 npm install
@@ -91,9 +107,9 @@ npm install
 
 ---
 
-# ⚙️ Variables de entorno
+# ⚙️ Environment Variables
 
-Crear un archivo `.env`
+Create a `.env` file
 
 ```env
 PORT=3000
@@ -107,15 +123,15 @@ DB_PASSWORD=
 
 ---
 
-# 🗄️ Base de datos
+# 🗄️ Database
 
-Crear la base de datos en PostgreSQL y ejecutar los archivos SQL del proyecto:
+Create the PostgreSQL database and run the SQL files included in the project:
 
 ```sql
 setup.sql
 ```
 
-Luego cargar los datos iniciales:
+Then load the seed data:
 
 ```sql
 seed.sql
@@ -123,15 +139,15 @@ seed.sql
 
 ---
 
-# ▶️ Ejecutar el proyecto
+# ▶️ Running the Project
 
-Modo desarrollo
+Development mode
 
 ```bash
 npm run dev
 ```
 
-Modo producción
+Production mode
 
 ```bash
 npm start
@@ -139,7 +155,7 @@ npm start
 
 ---
 
-# 🧪 Ejecutar los tests
+# 🧪 Running the Tests
 
 ```bash
 npm test
@@ -147,27 +163,27 @@ npm test
 
 ---
 
-# 📖 Documentación
+# 📖 Documentation
 
-Con el servidor en ejecución:
+With the server running locally:
 
 ```
 http://localhost:3000/api-docs
 ```
 
-Cuando el proyecto esté desplegado:
+Production:
 
 ```
-Pendiente
+https://YOUR-API-URL/docs
 ```
 
 ---
 
 # 📌 Endpoints
 
-## 👩‍💻 Authors
+## 👩🏻‍💻 Authors
 
-| Método | Endpoint     |
+| Method | Endpoint     |
 | ------ | ------------ |
 | GET    | /authors     |
 | GET    | /authors/:id |
@@ -179,7 +195,7 @@ Pendiente
 
 ## 📝 Posts
 
-| Método | Endpoint                |
+| Method | Endpoint                |
 | ------ | ----------------------- |
 | GET    | /posts                  |
 | GET    | /posts/:id              |
@@ -190,38 +206,54 @@ Pendiente
 
 ---
 
-# 🚂 Deploy
+# 🚂 Deployment
 
-API
+## API
 
-_Pendiente_
+**https://YOUR-API-URL**
 
-Swagger
+## Swagger
 
-_Pendiente_
-
----
-
-# 🤖 Uso de Inteligencia Artificial
-
-Durante el desarrollo del proyecto utilicé ChatGPT como herramienta de apoyo para:
-
-- Resolver dudas sobre Express.
-- Trabajar con PostgreSQL.
-- Comprender errores y depurarlos.
-- Revisar consultas SQL.
-- Mejorar la documentación.
-- Resolver inconvenientes durante el deployment.
-- Comprender conceptos vistos durante el desarrollo.
-
-Las decisiones finales de implementación, estructura y funcionamiento del proyecto fueron realizadas y verificadas por mí.
+**https://YOUR-API-URL/docs**
 
 ---
 
-# 👩🏻‍💻 Autora
+# 🤖 Use of Artificial Intelligence
+
+During the development of this project, I used ChatGPT as a learning and support tool to:
+
+- Solve questions related to Express.
+- Work with PostgreSQL.
+- Understand and debug errors.
+- Review SQL queries.
+- Improve the project documentation.
+- Resolve deployment issues.
+- Better understand concepts learned throughout the project.
+
+All implementation decisions, project structure, and final functionality were completed and verified by me.
+
+---
+
+# 📸 AI Assistance Examples
+
+### AI Consultation 1
+
+![AI-1](src/docs/images/ai-1.png)
+
+### AI Consultation 2
+
+![AI-2](src/docs/images/ai-2.png)
+
+---
+
+# 👩🏻‍💻 Author
 
 **Solange Aimery**
 
 GitHub
 
 https://github.com/solangeAimery98
+
+LinkedIn
+
+https://www.linkedin.com/in/YOUR-LINKEDIN
