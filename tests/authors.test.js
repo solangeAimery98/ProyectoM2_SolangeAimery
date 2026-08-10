@@ -4,10 +4,10 @@ import app from "../src/app.js";
 import pool from "../src/config/db.js";
 
 beforeEach(async () => {
-  // Limpiar la base de datos antes de cada test
+  // clean the database before each test
   await pool.query("TRUNCATE posts, authors RESTART IDENTITY CASCADE");
 
-  // Insertar autores de prueba
+  // insert test authors
   await pool.query(`
     INSERT INTO authors (name, email, bio)
     VALUES
@@ -16,7 +16,7 @@ beforeEach(async () => {
       ('Pedro Gómez', 'pedro@example.com', 'Backend Developer');
   `);
 
-  // Insertar posts de prueba
+  // Insert test post
   await pool.query(`
     INSERT INTO posts (title, content, author_id)
     VALUES
