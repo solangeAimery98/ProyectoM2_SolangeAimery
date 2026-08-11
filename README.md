@@ -18,22 +18,6 @@ REST API developed with **Node.js**, **Express**, and **PostgreSQL** as the Modu
 
 ---
 
-# 📸 Preview
-
-### Swagger Documentation
-
-![Swagger](src/docs/img/swagger.png)
-
-### Authors Endpoints
-
-![Authors](src/docs/img/authors.png)
-
-### Posts Endpoints
-
-![Posts](src/docs/img/posts.png)
-
----
-
 # 💜 About the Project
 
 MiniBlog API was developed with the goal of building a complete backend application following good development practices.
@@ -49,6 +33,22 @@ During development, the following concepts were applied:
 - Testing.
 - OpenAPI Documentation.
 - Railway Deployment.
+
+---
+
+# 📸 Preview
+
+### Swagger Documentation
+
+![Swagger](src/docs/img/swagger.png)
+
+### Authors Endpoints
+
+![Authors](src/docs/img/authors.png)
+
+### Posts Endpoints
+
+![Posts](src/docs/img/posts.png)
 
 ---
 
@@ -174,7 +174,7 @@ http://localhost:3000/api-docs
 Production:
 
 ```
-https://YOUR-API-URL/docs
+https://proyectom2solangeaimery-production.up.railway.app/api-docs/
 ```
 
 ---
@@ -210,11 +210,11 @@ https://YOUR-API-URL/docs
 
 ## API
 
-**https://YOUR-API-URL**
+**https://proyectom2solangeaimery-production.up.railway.app**
 
 ## Swagger
 
-**https://YOUR-API-URL/docs**
+**https://proyectom2solangeaimery-production.up.railway.app/api-docs/**
 
 ---
 
