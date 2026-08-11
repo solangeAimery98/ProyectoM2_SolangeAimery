@@ -253,7 +253,3 @@ All implementation decisions, project structure, and final functionality were co
 GitHub
 
 https://github.com/solangeAimery98
-
-LinkedIn
-
-https://www.linkedin.com/in/YOUR-LINKEDIN
