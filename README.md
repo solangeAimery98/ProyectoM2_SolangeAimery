@@ -10,11 +10,11 @@ REST API developed with **Node.js**, **Express**, and **PostgreSQL** as the Modu
 
 ## API
 
-**https://proyectom2solangeaimery-production.up.railway.app/api-docs/#/Posts/put_posts__id_**
+**https://proyectom2solangeaimery-production.up.railway.app**
 
-<!-- ## Swagger Documentation
+## Swagger Documentation
 
-**https://YOUR-API-URL/docs** -->
+**https://proyectom2solangeaimery-production.up.railway.app/api-docs/**
 
 ---
 
@@ -40,7 +40,7 @@ During development, the following concepts were applied:
 
 ### Swagger Documentation
 
-![Swagger](src/docs/img/swagger.png)
+![Swagger](/src/docs/img/swagger.png)
 
 ### Authors Endpoints
 
@@ -238,11 +238,11 @@ All implementation decisions, project structure, and final functionality were co
 
 ### AI Consultation 1
 
-![AI-1](src/docs/images/ai-1.png)
+![AI-1](./src/docs/img/ai-1.png)
 
 ### AI Consultation 2
 
-![AI-2](src/docs/images/ai-2.png)
+![AI-2](./src/docs/img/ai-2.png)
 
 ---
 
