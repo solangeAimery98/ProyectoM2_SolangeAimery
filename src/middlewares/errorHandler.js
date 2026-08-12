@@ -3,13 +3,14 @@ const errorHandler = (err, req, res, next) => {
 
   switch (err.code) {
     case "23505":
-      return res.status(400).json({
+      return res.status(409).json({
         message: "Email already exists",
       });
 
     case "23503":
       return res.status(400).json({
-        message: "Referenced author does not exist",
+        message:
+          "Referenced author does not exist, or this author still has posts associated",
       });
 
     case "23502":

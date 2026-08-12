@@ -7,6 +7,8 @@ import {
   deletePost,
 } from "../services/posts.js";
 
+import { getAuthorById } from "../services/authors.js";
+
 // GET ALL POST
 export async function getPostsController(req, res, next) {
   try {
@@ -38,6 +40,14 @@ export async function getPostByIdController(req, res, next) {
 // Get a post by an author
 export async function getPostsByAuthorController(req, res, next) {
   try {
+    const author = await getAuthorById(req.params.authorId);
+
+    if (!author) {
+      return res.status(404).json({
+        message: "Author not found",
+      });
+    }
+
     const posts = await getPostsByAuthor(req.params.authorId);
 
     res.json(posts);
