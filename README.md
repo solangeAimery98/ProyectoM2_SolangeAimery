@@ -90,7 +90,7 @@ Before running the project, make sure you have installed:
 Clone the repository
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/solangeAimery98/ProyectoM2_SolangeAimery/tree/main
 ```
 
 Navigate to the project folder
